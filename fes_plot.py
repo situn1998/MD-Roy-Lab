@@ -4,10 +4,11 @@ import matplotlib.pyplot as plt
 from matplotlib import cm
 import matplotlib.animation as animation
 
-## Tune the Input parameters ## 
-demo_file = "bck.0.fes.dat" ##Enter the input file name
-x_label = "RMSD Switch-I" ##Enter the X-axis label
-y_label = "COM Distance" ##Enter the Y-axis label
+## Imput parameters ## 
+demo_file = "fes.dat"
+x_label = "COM P-loop & Switch-I"
+y_label = "COM P-loop & Switch-II"
+z_label = r"Potential (kcal/mol)"
 
 ## Reading the file ##
 data = open(demo_file,"r")
@@ -50,23 +51,24 @@ for k in demolines:
 
 X,Y = np.meshgrid(x,y)
 
-## For 2D Contour Plot ##
+## For 2D Plot ##
 fig, ax = plt.subplots(1,1)
 width = np.linspace(np.min(Z),np.max(Z),500)
 cp = ax.contourf(X, Y, Z, levels = width, cmap = cm.jet)
-fig.colorbar(cp)
+cbar = fig.colorbar(cp)
+cbar.set_label(z_label, labelpad=20.0, rotation=270)
 ax.set_xlabel(x_label)
 ax.set_ylabel(y_label)
 plt.savefig("2D-Energy Plot")
 plt.show()
 
-## For 3D Plot ##
+## For 3D Plot & Animation ##
 fig = plt.figure()
 ax = plt.axes(projection='3d')
-ax.plot_surface(X, Y, Z)
+#ax.plot_surface(X, Y, Z, cmap=cm.coolwarm)
 ax.set_xlabel(x_label)
 ax.set_ylabel(y_label)
-ax.set_zlabel('Potential')
+ax.set_zlabel(z_label)
 
 def init():
     ax.plot_surface(X, Y, Z, cmap=cm.coolwarm)
