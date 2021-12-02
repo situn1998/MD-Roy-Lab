@@ -2,6 +2,7 @@ import numpy as np
 from mpl_toolkits.mplot3d import axes3d
 import matplotlib.pyplot as plt
 from matplotlib import cm
+import matplotlib.animation as animation
 
 ## Tune the Input parameters ## 
 demo_file = "bck.0.fes.dat" ##Enter the input file name
@@ -66,4 +67,13 @@ ax.plot_surface(X, Y, Z)
 ax.set_xlabel(x_label)
 ax.set_ylabel(y_label)
 ax.set_zlabel('Potential')
-plt.show()
+
+
+def init():
+    ax.plot_surface(X, Y, Z, cmap=cm.coolwarm)
+    return fig,
+def animate(i):
+    ax.view_init(elev=10., azim=i)
+    return fig,
+anim = animation.FuncAnimation(fig, animate, init_func=init, frames=360, interval=10, blit=True)
+anim.save('2D-Energy Plot.mp4', fps=30, extra_args=['-vcodec', 'libx264'], dpi=250)
