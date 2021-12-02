@@ -68,7 +68,6 @@ ax.set_xlabel(x_label)
 ax.set_ylabel(y_label)
 ax.set_zlabel('Potential')
 
-
 def init():
     ax.plot_surface(X, Y, Z, cmap=cm.coolwarm)
     return fig,
