@@ -1,6 +1,7 @@
 import numpy as np
 from mpl_toolkits.mplot3d import axes3d
 import matplotlib.pyplot as plt
+from matplotlib import cm
 
 ## Tune the Input parameters ## 
 demo_file = "bck.0.fes.dat" ##Enter the input file name
@@ -49,9 +50,10 @@ for k in demolines:
 X,Y = np.meshgrid(x,y)
 
 ## For 2D Contour Plot ##
-fig, ax=plt.subplots(1,1)
-cp = ax.contourf(X, Y, Z)
-fig.colorbar(cp, ax=ax)
+fig, ax = plt.subplots(1,1)
+width = np.linspace(np.min(Z),np.max(Z),500)
+cp = ax.contourf(X, Y, Z, levels = width, cmap = cm.jet)
+fig.colorbar(cp)
 ax.set_xlabel(x_label)
 ax.set_ylabel(y_label)
 plt.savefig("2D-Energy Plot")
