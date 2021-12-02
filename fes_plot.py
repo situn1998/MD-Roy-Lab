@@ -62,19 +62,27 @@ ax.set_ylabel(y_label)
 plt.savefig("2D-Energy Plot")
 plt.show()
 
-## For 3D Plot & Animation ##
+## For 3D Plot ##
 fig = plt.figure()
 ax = plt.axes(projection='3d')
-#ax.plot_surface(X, Y, Z, cmap=cm.coolwarm)
+ax.plot_surface(X, Y, Z, cmap=cm.coolwarm)
 ax.set_xlabel(x_label)
 ax.set_ylabel(y_label)
 ax.set_zlabel(z_label)
+plt.show()
 
-def init():
-    ax.plot_surface(X, Y, Z, cmap=cm.coolwarm)
-    return fig,
-def animate(i):
-    ax.view_init(elev=10., azim=i)
-    return fig,
-anim = animation.FuncAnimation(fig, animate, init_func=init, frames=360, interval=10, blit=True)
-anim.save('2D-Energy Plot.mp4', fps=30, extra_args=['-vcodec', 'libx264'], dpi=250)
+## Animation ##
+var = str(input("\nDo you want to animate the 3D surface? [y/n]: "))
+print(" ")
+if var.lower() == "y":
+    def init():
+        ax.plot_surface(X, Y, Z, cmap = cm.coolwarm)
+        return fig,
+    def animate(i):
+        ax.view_init(elev = 10., azim = i)
+        return fig,
+    anim = animation.FuncAnimation(fig, animate, init_func = init, frames = 360, interval = 10, blit = True)
+    anim.save('2D-Energy Plot.mp4', fps = 30, extra_args=['-vcodec', 'libx264'], dpi = 250)
+else:
+    exit()
+    
