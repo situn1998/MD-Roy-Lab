@@ -2,10 +2,10 @@ import numpy as np
 from mpl_toolkits.mplot3d import axes3d
 import matplotlib.pyplot as plt
 
-## Imput parameters ## 
-demo_file = "bck.0.fes.dat"
-x_label = "RMSD Switch-I"
-y_label = "COM Distance"
+## Tune the Input parameters ## 
+demo_file = "bck.0.fes.dat" ##Enter the input file name
+x_label = "RMSD Switch-I" ##Enter the X-axis label
+y_label = "COM Distance" ##Enter the Y-axis label
 
 ## Reading the file ##
 data = open(demo_file,"r")
@@ -48,7 +48,7 @@ for k in demolines:
 
 X,Y = np.meshgrid(x,y)
 
-## For 2D Plot ##
+## For 2D Contour Plot ##
 fig, ax=plt.subplots(1,1)
 cp = ax.contourf(X, Y, Z)
 fig.colorbar(cp, ax=ax)
