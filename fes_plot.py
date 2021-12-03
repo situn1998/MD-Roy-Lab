@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from matplotlib import cm
 import matplotlib.animation as animation
 
-## Imput parameters ## 
+## Input parameters ## 
 demo_file = "fes.dat"
 x_label = "COM P-loop & Switch-I"
 y_label = "COM P-loop & Switch-II"
